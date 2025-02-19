@@ -1,0 +1,316 @@
+body {
+    background: rgb(2,0,36);
+    background: linear-gradient(66deg, rgba(2,0,36,1) 0%, rgba(42,94,166,1) 41%, rgba(0,255,193,1) 100%);
+    font-family: Arial, sans-serif;
+    width: 100%;
+    height: 100vh;
+}
+
+header {
+    background-color: #000000;
+    border-bottom: 2px solid #007bff;
+    z-index: 200;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0.45rem 2rem 0.45rem 2rem;
+}
+
+* {
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header p {
+    font-size: 30px; 
+    color: #ffffff; 
+    margin: 0; 
+}
+
+/*sidebar*/
+.sidebar {
+    border-right: 2px solid #007bff;
+    background-color: #000000;
+    color: #ffffff; 
+    width: 0rem;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    z-index: 100;
+    padding: 1.1rem 0;
+    transition: width 0.5s ease;
+}
+.sidebar a{
+    display: none;
+    align-items: center;
+    gap: 1.3rem;
+    padding: 0.9rem 0.7rem;
+    margin: 0 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 20px;
+    transition: left 0.3s ease;
+}
+.sidebar.hidden a {
+    display: flex;
+}
+.sidebar button {
+    background: rgb(246,3,3);
+    background: linear-gradient(110deg, rgba(246,3,3,1) 0%, rgba(244,149,107,1) 55%, rgba(255,232,144,1) 100%);
+    color: #ffffff;
+    display: none;
+    opacity: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 1.3rem;
+    padding: 0.5rem 0.9rem;
+    position: absolute;
+    bottom: 3rem;
+    width: calc(90% - 1rem);
+    margin: 1.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: left 0.4sease;
+}
+.sidebar button:hover {
+    background-color: #ffffff;
+    color: #ffabab;
+    transform: scale(1.1, 1.15);
+    border: 1px solid rgb(255, 0, 0);
+}
+.logout_button.hidden {
+    display: flex;
+    opacity: 100;
+}
+.sidebar.hidden {
+    width: 18.57rem;
+}
+
+.toggle_sidebar {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 50px;
+    left: 10px;
+    background: linear-gradient(24deg, rgba(52,48,121,1) 0%, rgba(86,189,164,1) 100%);
+    opacity: 0.7;
+    color: white;
+    border: 2px solid skyblue;
+    margin: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 28px;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+.toggle_sidebar.hidden {
+    transform: translateX(600%) rotate(180deg);
+}
+/*chat bot*/
+
+.chat-container { 
+    flex: 1;
+    width: 80rem;
+    display: flex;
+    flex-direction: column;
+    background: rgba(15, 21, 28, 0.7);
+    border: solid #ffffff 3px;
+    border-radius: 15px;
+    transition: width 0.3s ease, margin 0.3s ease, left 0.3s ease;
+    height: 42rem;
+    margin: 2rem auto;
+    padding: 1rem;
+    position: relative;
+}
+
+.chat-container.full-width {
+    width: 75rem;
+    left: 1rem;
+    margin-right: 7rem;
+}
+
+
+.chat-header {
+    background: #007bff;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.chat-box {
+    flex: 1; /* El chat-box ocupa el espacio disponible */
+    padding: 10px;
+    padding-top: 5rem;
+    overflow-y: auto;
+    border-bottom: 2px solid #ffffff;
+    transition: left 0.3s ease;
+}
+
+.chat-box.hidden {
+    margin-left: 18.57rem;
+}
+
+.input-container {
+    display: flex;
+    padding: 10px;
+    background: transparent;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+}
+
+input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    outline: none;
+    background: rgb(4,4,4);
+    background: linear-gradient(23deg, rgba(4,4,4,1) 0%, rgb(32, 29, 29) 55%, rgb(56, 54, 54) 100%);
+    color: white;
+}
+.input-btn {
+    background: rgb(52,48,121);
+    background: linear-gradient(24deg, rgba(52,48,121,1) 0%, rgba(86,189,164,1) 100%);
+    height: 40px;
+    width: 50px;
+    cursor: pointer;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin-left: 2rem;
+    color: #ffffff;
+    transition: transform 0.3s ease;
+}
+.input-btn.hover {
+    background-color: #ffffff;
+}
+/* Estilos para los mensajes */
+.message { 
+    padding: 10px;
+    margin: 5px;
+    border-radius: 8px;
+    min-width: 10rem;
+    max-width: 50rem;
+    overflow-wrap: break-word;
+    display: flex;
+    flex-direction: column; /* Para alinear la info y el mensaje verticalmente */
+}
+
+.user-message {
+    background: rgb(52,48,121);
+    background: linear-gradient(24deg, rgba(52,48,121,1) 0%, rgba(86,189,164,1) 100%);
+    border: 2px solid #ffffff;
+    color: white;
+    right: 10px;
+    align-self: flex-end;
+    text-align: right;
+    margin-left: auto;
+}
+
+.bot-message {
+    background: rgb(4,4,4);
+    background: linear-gradient(23deg, rgba(4,4,4,1) 0%, rgba(82,80,80,1) 55%, rgba(227,226,226,1) 100%);
+    border: 2px solid #ffffff;
+    color: white;
+    align-self: flex-start; /* Alinea el mensaje a la izquierda */
+    text-align: left; /* Alinea el texto a la izquierda */
+    margin: 20px;
+}
+
+.user-info{
+    position: relative;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+
+.bot-info {
+    display: flex;
+    align-items: center; /* Para alinear el círculo y el texto */
+    margin-bottom: 5px; /* Espacio entre la info y el mensaje */
+}
+
+.bot-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ccc; /* Color de fondo provisional */
+    margin-right: 5px;
+}
+.user-icon {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    transform: translatex(30%);
+    border-radius: 50%;
+    background-color: #ccc;
+    margin-right: 5px;
+}
+.message-user {
+    position: relative;
+    top: 5px;
+    right: 35px;
+    font-weight: bold;
+}
+.message-bot {
+    position: relative;
+    left: 5px;
+    font-weight: bold;
+}
+
+/*animaciones*/
+
+/* Animación de desaparición */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+        visibility: hidden;
+    }
+}
+
+/* Animación de aparición */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+        visibility: hidden;
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+        visibility: visible;
+    }
+}
+
+/* Chat visible */
+.chat-container {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+/* Ocultar chat con animación */
+.chat-container.hidden {
+    animation: fadeOut 0.5s ease-in-out forwards;
+}
+
+/* Mostrar chat con animación */
+.chat-container.active {
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
